@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import javax.swing.JOptionPane;
 
 class MeineMethoden {
@@ -134,5 +138,66 @@ class MeineMethoden {
         } else {
             System.out.println("Ihre Eingabe: " + eingabe + " war falsch!");
         }
+    }
+
+    // Eine Methode, die nicht void ist, braucht mind. 1 return-Anweisung!
+    public static String[][] findAll() {
+        
+        // Zugriff auf eine gespeicherte Datei benötigt IMMER einen PATH
+        // Hier als relativer Pfad
+        Path pfadAufCSV = Path.of("daten/studenten.csv");
+        
+        // FehlerBEHANDLUNG, weil die Methode readString mehrer Exceptions wirft, wenn etwas nicht klappt
+        // Bei Zugriff auf das Dateiensystem fordert Java try - catch 
+        try {
+            // ALLES als Zeichenfolge einlesen
+            String csvContent = Files.readString(pfadAufCSV);
+
+            // Zeichenfolge am Zeilenumbruchzeichen "\n" zerlegen
+            // und als Array zurückgeben 
+            String[] lines = csvContent.split("\n");
+            
+            // leeres Array instanziieren, um in und nach if Zugriff darauf zu haben 
+            String [][] lokBuf = new String[0][0];
+
+            // Performance, wenn nichts aus der Datei angekommen ist, dann mach nichts
+            if (lines.length > 0) {
+                
+                // Referenz des Arrays NEU zuweisen, mit einem Array,
+                // dass für jeden "Datenzeile" der Datei einen Platz bietet
+                // 4 = Anzahl der durch Komma getrennten Elemente einer Datenzeile
+                lokBuf = new String[lines.length][4];
+
+                // Mittels for-schleife über alle Datenzeilen gehen 
+                for (int i = 0; i < lines.length; i++) {
+                    // jeweils die aktuelle Datenzeile am Komma zerlegen,
+                    // um ein Array mit den einzelnen Elementen zu bekommen
+                    String[] elmements = lines[i].split(",");
+                    
+                    // Mittels des Zählers der Schleifenposition 
+                    // auf das Array zugreifen, dass den Inhalt der Datei speichern soll
+                    // und per Zuweisungsoperator das gerade erzeugte Array dem Speicherplatz 
+                    // zuweisen. Da lokBuf ein zweidimensionales Array für String[] ist,
+                    // kann direkt das Array gespeichert werden, ohne eine Zuweisung zu den
+                    // 4 einzelnen Speicherplätzen für einen String vornehmen zu müssen
+                    lokBuf[i] = elmements;
+                }
+            }
+
+            // Rückgage des geforderten Datentyps der Methode 
+            return lokBuf;
+
+            // ACHTUNG: Nach return endet immer ein Codebereich und die Methode springt 
+            // zurück zum Aufrufer
+
+        } catch (IOException e) {
+
+            // Ausgabe einer möglichen Fehlermeldung auf der Console 
+            e.printStackTrace();
+        }
+
+        // Sollte alles nicht geklappt haben, dann gibt eine null-Referenz an den Aufrufer zurück!
+        // BEACHTE: Es kann mehrere returns gebe, ABER immer entweder oder erreichbar
+        return null;
     }
 }
