@@ -2,6 +2,8 @@ class Hauptanwendung {
 
     public static void main(String[] args) {
 
+        MeineMethoden.aufgabenSchleifen();
+
         String[][] studenten = new String[1][4]; 
         studenten[0][0] = "Peter"; 
         studenten[0][1] = "Lustig"; 
@@ -19,5 +21,12 @@ class Hauptanwendung {
         studenten[2][1] = "Mustermann"; 
         studenten[2][2] = "12.07.2001";     
         studenten[2][3] = "FSWI-1";
+
+        // Zusatzaufgabe Schleife über mehrdim. Array
+        for (int i = 0; i < studenten.length; i++) {
+            for (int ii = 0; ii < studenten[i].length; ii++) {
+                System.out.println(studenten[i][ii]);
+            }
+        }
     }
 }
