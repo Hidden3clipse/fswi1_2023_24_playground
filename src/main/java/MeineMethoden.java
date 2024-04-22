@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 class MeineMethoden {
 
     // A1a
@@ -94,6 +96,43 @@ class MeineMethoden {
         // Aufgabe 4
         for (double number : numbers) {
             System.out.println(number);
+        }
+    }
+
+    static void aufgabenFehler() {
+
+        System.out.println("\nAufgaben Fehler");
+
+        int index = -3;
+        int[] numbers = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // FehlerVERMEIDUNG durch Prüfung, ob index größer 0
+        // und kleiner als die Länge des Arrays ist  
+        if (index >= 0 && index < numbers.length) {
+            System.out.println(numbers[index]);
+        } else {
+            System.out.println("Es ist ein Fehler aufgetreten!");
+        }
+
+        // FehlerBEHANDLUNG, durch try - catch, weil die Methode parseInt
+        // angibt, dass sie eine NumberFormatException wirft, wenn der 
+        // gegebene String nicht aus NUR Zahlen besteht 
+        try {
+            String zahlAlsZeichen = "123";
+            int zahlAusZeichen = Integer.parseInt(zahlAlsZeichen);
+            System.out.println(zahlAusZeichen);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String eingabe = JOptionPane.showInputDialog("Gib was ein?");
+
+        // FehlerVERMEIDUNG, weil der String eingabe null annehmen kann,
+        // wenn der Anwender im angezeigten Dialog auf Abbrechen drückt
+        if (eingabe != null) {
+            System.out.println(eingabe.contains("Hallo"));
+        } else {
+            System.out.println("Ihre Eingabe: " + eingabe + " war falsch!");
         }
     }
 }
