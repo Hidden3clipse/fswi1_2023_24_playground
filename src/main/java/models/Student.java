@@ -44,4 +44,13 @@ public class Student {
 	public void setKlasse(String klasse) {
 		this.klasse = klasse;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%s, %s, %s, %s",
+            getVorname(),
+            getNachname(),
+            getGeburtsdatum(),
+            getKlasse());
+	}
 }

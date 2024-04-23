@@ -5,7 +5,9 @@ import java.nio.file.Path;
 
 import javax.swing.JOptionPane;
 
-class MeineMethoden {
+import models.Student;
+
+public class MeineMethoden {
 
     // A1a
     static int getSumme(int a, int b) {
@@ -142,7 +144,7 @@ class MeineMethoden {
     }
 
     // Eine Methode, die nicht void ist, braucht mind. 1 return-Anweisung!
-    static String[][] findAll() {
+    public static Student[] findAll() {
         
         // Zugriff auf eine gespeicherte Datei benötigt IMMER einen PATH
         // Hier als relativer Pfad
@@ -159,7 +161,7 @@ class MeineMethoden {
             String[] lines = csvContent.split("\n");
             
             // leeres Array instanziieren, um in und nach if Zugriff darauf zu haben 
-            String [][] lokBuf = new String[0][0];
+            Student[] lokBuf = new Student[0];
 
             // Performance, wenn nichts aus der Datei angekommen ist, dann mach nichts
             if (lines.length > 0) {
@@ -167,21 +169,20 @@ class MeineMethoden {
                 // Referenz des Arrays NEU zuweisen, mit einem Array,
                 // dass für jeden "Datenzeile" der Datei einen Platz bietet
                 // 4 = Anzahl der durch Komma getrennten Elemente einer Datenzeile
-                lokBuf = new String[lines.length][4];
+                lokBuf = new Student[lines.length];
 
                 // Mittels for-schleife über alle Datenzeilen gehen 
                 for (int i = 0; i < lines.length; i++) {
                     // jeweils die aktuelle Datenzeile am Komma zerlegen,
                     // um ein Array mit den einzelnen Elementen zu bekommen
-                    String[] elmements = lines[i].split(",");
+                    String[] elements = lines[i].split(",");
                     
-                    // Mittels des Zählers der Schleifenposition 
-                    // auf das Array zugreifen, dass den Inhalt der Datei speichern soll
-                    // und per Zuweisungsoperator das gerade erzeugte Array dem Speicherplatz 
-                    // zuweisen. Da lokBuf ein zweidimensionales Array für String[] ist,
-                    // kann direkt das Array gespeichert werden, ohne eine Zuweisung zu den
-                    // 4 einzelnen Speicherplätzen für einen String vornehmen zu müssen
-                    lokBuf[i] = elmements;
+                    // Erzeugung einer Instanz der Klasse Student mit den gespeicherten Werte aus dem 
+                    // Array elements, das mit der .split(",") erzeugt wurde
+                    Student lokStudent = new Student(elements[0], elements[1], elements[2], elements[3]);
+
+                    //Zuweisung des Objekts Student (lokStudent) zum Array
+                    lokBuf[i] = lokStudent;
                 }
             }
 
