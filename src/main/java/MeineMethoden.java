@@ -141,7 +141,7 @@ class MeineMethoden {
     }
 
     // Eine Methode, die nicht void ist, braucht mind. 1 return-Anweisung!
-    public static String[][] findAll() {
+    static String[][] findAll() {
         
         // Zugriff auf eine gespeicherte Datei benötigt IMMER einen PATH
         // Hier als relativer Pfad
