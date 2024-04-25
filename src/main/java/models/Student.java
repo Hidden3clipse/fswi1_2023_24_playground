@@ -1,10 +1,7 @@
 package models;
 public class Student {
-    private String vorname;
-	private String nachname;
-	private String geburtsdatum;
-	private String klasse;
-	
+    private String vorname, nachname, geburtsdatum, klasse;
+
 	public Student(String vorname, String nachname, String geburtsdatum, String klasse) {
 		setVorname(vorname);
 		setNachname(nachname);
@@ -13,7 +10,7 @@ public class Student {
     }
 
 	public Student(String nachname, String geburtsdatum) {
-		this.nachname = nachname;
+		setNachname(nachname);
 		this.geburtsdatum = geburtsdatum;
     }
 
@@ -27,7 +24,7 @@ public class Student {
 
 	public String getGeburtsdatum() {
 		return geburtsdatum;
-	}
+	}		
 
 	public String getKlasse() {
 		return klasse;
@@ -43,14 +40,5 @@ public class Student {
 
 	public void setKlasse(String klasse) {
 		this.klasse = klasse;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("%s, %s, %s, %s",
-            getVorname(),
-            getNachname(),
-            getGeburtsdatum(),
-            getKlasse());
 	}
 }
