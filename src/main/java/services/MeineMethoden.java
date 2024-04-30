@@ -5,7 +5,7 @@ import java.nio.file.Path;
 
 import javax.swing.JOptionPane;
 
-class MeineMethoden {
+public class MeineMethoden {
 
     // A1a
     static int getSumme(int a, int b) {
@@ -142,7 +142,7 @@ class MeineMethoden {
     }
 
     // Eine Methode, die nicht void ist, braucht mind. 1 return-Anweisung!
-    static String[][] findAll() {
+    public static Student[] findAll() {
         
         // Zugriff auf eine gespeicherte Datei benötigt IMMER einen PATH
         // Hier als relativer Pfad
